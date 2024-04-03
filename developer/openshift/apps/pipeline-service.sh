@@ -109,9 +109,9 @@ EOF
     .data.[\"config.env\"]=\"$string_data\"
   " "$WORK_DIR/environment/compute/tekton-results/tekton-results-minio-config.yaml"
   yq --inplace "
-    .data.[\"ca.crt\"]=\"$(base64 "$TEKTON_RESULTS_DB_SSL/ca.crt")\" |
-    .data.[\"tls.crt\"]=\"$(base64 "$TEKTON_RESULTS_DB_SSL/tls.crt")\" |
-    .data.[\"tls.key\"]=\"$(base64 "$TEKTON_RESULTS_DB_SSL/tls.key")\"
+    .data.[\"ca.crt\"]=\"$(cat "$TEKTON_RESULTS_DB_SSL/ca.crt" | base64)\" |
+    .data.[\"tls.crt\"]=\"$(cat "$TEKTON_RESULTS_DB_SSL/tls.crt" | base64)\" |
+    .data.[\"tls.key\"]=\"$(cat "$TEKTON_RESULTS_DB_SSL/tls.key" | base64)\"
   " "$WORK_DIR/environment/compute/tekton-results/tekton-results-postgresql-tls-secret.yaml"
   yq --inplace "
   .data.[\"tekton-results-db-ca.pem\"]=\"$(cat "$TEKTON_RESULTS_DB_SSL/tls.crt" "$TEKTON_RESULTS_DB_SSL/ca.crt")\"
