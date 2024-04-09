@@ -84,6 +84,8 @@ spec:
     enable-git-resolver: true
     enable-hub-resolver: true
     enable-tekton-oci-bundles: true
+    results-from: sidecar-logs
+    max-result-size: 12288
     options:
       disabled: false
       configMaps:
